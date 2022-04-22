@@ -5,6 +5,7 @@
 	const HDWalletProvider = require("@truffle/hdwallet-provider");
 
 	if (process.argv.length != 3) {
+	    console.log("Please specify the private key");
             return
 	}
 
