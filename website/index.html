@@ -6,11 +6,20 @@
     <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/ipfs-core/dist/index.min.js"></script>
     <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
     <style>
         body {
             background-color: rgb(191, 214, 255);
         }
+	h1 {
+  display: block;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
         .container {
             display: grid;
             grid-template-columns: repeat(16, 50px);
@@ -32,7 +41,9 @@
    </style>
 </head>
 <body>
-    <h1 style="position:relative; left:50px; top:25px;">Connect your account, place a tile and submit!</h1>
+    <h1 style="position:relative; left:50px; top:25px;">Ethereum Places!</h1>
+    <h2 style="position:relative; left:50px; top:25px;">Connect your account, click to update a tile colour and submit!</h2>
+    <h6 style="position:relative; left:50px; top:25px;">Please note this is currently implemented on the optimisim kovan, please change your chain before submitting!</h6>
     <button id="enableEthereumButton" style = "position:relative; left:50px; top:50px;">Connect Account</button>
     <h2 style = "position:relative; left:50px; top:50px;">Account: <span id="showAccount"></span></h2>
     <button  id="submit" style = "position:relative; left:50px; top:50px;">Submit</button>

@@ -1,10 +1,10 @@
-const web3 = new Web3("https://kovan.infura.io/v3/b0ccde3831824dc09cfc8873ff8c3e0e");
+const web3 = new Web3("https://kovan.optimism.io");
 
 let ipfs;
 let hash_array = []
 let accounts = []
 
-const contract_addr = '0x9bD686226eDC3b15BD227F4635b289ECA6ECa9f5';
+const contract_addr = '0xF3C67eB4e405A99Ad17a5A66bc2bBb5A45BB0b6B';
 
 const colours = ["#ffffff","#e4e4e4","#888888","#222222","#ffa7d1","#e50000","#e59500","#a06a42","#e5d900","#94e044","#02be01","#00d3dd","#0083c7","#0000ea","#cf6ee4","#820080"];
 
@@ -164,4 +164,14 @@ window.onload = async ()=>{
             document.getElementById(places[i].id).style.backgroundColor = colours[result];
 	});
     }
+    ethereum.request({
+	    method: 'wallet_addEthereumChain',
+	    params: [
+		    {
+			                chainId: '0x45',
+            chainName: 'Optimistic Ethereum (Kovan)',
+            rpcUrls: ['https://kovan.optimism.io'],
+		    },
+	    ],
+    });
 }

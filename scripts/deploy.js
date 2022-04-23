@@ -11,7 +11,7 @@
 
 	let provider = new HDWalletProvider(
 		process.argv[2],
-		"wss://kovan.infura.io/ws/v3/b0ccde3831824dc09cfc8873ff8c3e0e"
+		"https://kovan.optimism.io"
 	);
 
 	const artifactsPath = "contracts/build-info/Places.json";
@@ -39,7 +39,7 @@
 	const newContractInstance = await contract.send({
             from: accounts[0],
             gas: 1000000,
-            gasPrice: '10000000000'
+            gasPrice: '100000000'
         })
 
         console.log('Contract deployed at address: ', newContractInstance.options.address)
