@@ -24,7 +24,10 @@ contract Places {
 
     Colour[16][16] state;
 
+    uint price;
+
     constructor() public {
+        price = 0;
         for (uint i=0; i<16; i++){
             for (uint j=0; j<16; j++){
                 state[i][j] = Colour.White;
@@ -32,8 +35,14 @@ contract Places {
         }
     }
 
-    function store(Colour _colour, uint i, uint j) public {
+    function store(Colour _colour, uint i, uint j) public payable {
+        require(msg.value >= price, "You need to send more than the current base");
+        price = price + 1000000000000;
         state[i][j] = _colour;
+    }
+
+    function basePrice() public view returns (uint){
+        return price;
     }
 
     function retrieve(uint i, uint j) public view returns (Colour){

@@ -4,7 +4,7 @@ let ipfs;
 let hash_array = []
 let accounts = []
 
-const contract_addr = '0x5D135C5E01A189524548d1A956847Cf192966Ab1';
+const contract_addr = '0x9bD686226eDC3b15BD227F4635b289ECA6ECa9f5';
 
 const colours = ["#ffffff","#e4e4e4","#888888","#222222","#ffa7d1","#e50000","#e59500","#a06a42","#e5d900","#94e044","#02be01","#00d3dd","#0083c7","#0000ea","#cf6ee4","#820080"];
 
@@ -59,14 +59,31 @@ document.getElementById('submit').addEventListener("click",async ()=>{
         contract.methods.retrieve(i % 16,(i - i % 16)/16).call(function(error, result) {
 	    let place = document.getElementById(places[i].id);
 	    if (RGBtoHEX(place.style.backgroundColor) != colours[result]) {
-		 let colour_index = colours.indexOf(RGBtoHEX(place.style.backgroundColor));
-                 let tx = ethereum.request({
+		 var abi_price = [
+  {
+    "inputs": [],
+    "name": "basePrice",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }];
+		 let contract_price = new web3.eth.Contract(abi_price, contract_addr);
+		 contract_price.methods.basePrice().call(function(error, result) {
+	             console.log(result);
+		     let colour_index = colours.indexOf(RGBtoHEX(place.style.backgroundColor));
+                     let tx = ethereum.request({
                        method: 'eth_sendTransaction',
                        params: [
                        {
                        from: accounts[0],
                        to: contract_addr,
-                       value: 0,
+                       value: result,
                        data: web3.eth.abi.encodeFunctionCall({
                             name: 'store',
                             type: 'function',
@@ -89,6 +106,7 @@ document.getElementById('submit').addEventListener("click",async ()=>{
             }
         ]
     });
+		});
 	    }
         });
     }
@@ -99,13 +117,11 @@ for (let i = 0; i < places.length; i++) {
         let place = document.getElementById(places[i].id);
 	let index = 0;
 	for (let j = 0; j < colours.length; j++) {
-            console.log(RGBtoHEX(place.style.backgroundColor));
             if (RGBtoHEX(place.style.backgroundColor) == colours[j]) {
                 index = j;
 		break
             }
 	}
-	console.log(index);
         if (index + 1 >= colours.length) {
             index = 0;
         } else {
