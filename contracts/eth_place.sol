@@ -37,7 +37,7 @@ contract Places {
 
     function store(Colour _colour, uint i, uint j) public payable {
         require(msg.value >= price, "You need to send more than the current base");
-        price = price + 1000000000000;
+        price = price + 1000000;
         state[i][j] = _colour;
     }
 
