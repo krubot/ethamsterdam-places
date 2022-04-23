@@ -14,9 +14,9 @@
 
 	const web3 = new Web3(provider);
 
-  const accounts = await web3.eth.getAccounts();
+	const accounts = await web3.eth.getAccounts();
 
-  console.log(accounts);
+	console.log(accounts);
 
 	const balance = await web3.eth.getBalance(accounts[0]);
 
@@ -33,12 +33,13 @@
 
 	const newContractInstance = await contract.send({
             from: accounts[0],
-            gas: 1500000,
+            gas: 1000000,
             gasPrice: '10000000000'
         })
 
         console.log('Contract deployed at address: ', newContractInstance.options.address)
 
+	return
     } catch (e) {
         console.log(e.message)
     }
