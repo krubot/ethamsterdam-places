@@ -22,6 +22,8 @@
 			console.log(result);
 		});
     	};
+	
+	return
     } catch (e) {
         console.log(e.message)
     }
